@@ -8,7 +8,9 @@ class Account
   end
 
   def current_balance()
-    @transactions.map { |transaction| transaction.credit }.sum
+    credit = @transactions.map { |transaction| transaction.credit }.sum
+    debit = @transactions.map { |transaction| transaction.debit }.sum
+    credit - debit
   end
 
   def deposit(amount)
@@ -18,7 +20,9 @@ class Account
   end
 
   def withdraw(amount)
-    @transaction.new.withdraw(amount)
+    new_transaction = @transaction.new(current_balance)
+    new_transaction.withdraw(amount)
+    @transactions.push(new_transaction)
   end
 
 end
