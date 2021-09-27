@@ -4,8 +4,8 @@ describe Account do
 
   let(:transaction_class) { double :transaction_class }
   let(:transaction_instance) { double :transaction_instance }
-  let(:transaction_instance_credit) { double :transaction_instance, credit: 10.00, debit: 0 }
-  let(:transaction_instance_debit) { double :transaction_instance, credit: 0, debit: 10.00 }
+  let(:transaction_instance_credit) { double :transaction_instance, credit: 10.00, debit: 0.0 }
+  let(:transaction_instance_debit) { double :transaction_instance, credit: 0.0, debit: 10.00 }
 
   subject { Account.new(transaction_class) }
 
@@ -16,7 +16,7 @@ describe Account do
     end
 
     it "starts with a balance of zero" do
-      expect(subject.current_balance).to eq(0)
+      expect(subject.current_balance).to eq(0.0)
     end
 
     it "calls transaction deposit function" do
