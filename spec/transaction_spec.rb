@@ -17,7 +17,7 @@ describe Transaction do
   context '#withdrawal' do
   
     it 'records a withdrawal as a debit' do
-      subject.withdrawal(10.00)
+      subject.withdraw(10.00)
       expect(subject.debit).to eq(10.00)
     end
 

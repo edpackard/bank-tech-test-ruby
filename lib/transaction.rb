@@ -11,7 +11,7 @@ class Transaction
     @credit = amount
   end 
 
-  def withdrawal(amount)
+  def withdraw(amount)
     @debit = amount
   end
 
