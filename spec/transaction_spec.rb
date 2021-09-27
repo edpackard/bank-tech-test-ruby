@@ -4,6 +4,27 @@ describe Transaction do
 
   subject { Transaction.new(5.00) }
 
+  context 'initialization values' do
+
+    it 'receives an argument which sets transaction balance' do
+      new_transaction = Transaction.new(100.00)
+      expect(new_transaction.balance).to eq(100.00)
+    end
+
+    it 'initializes with the current date' do
+      time = Time.now
+      allow(Time).to receive(:now).and_return(time)
+      new_transaction = Transaction.new(5.00)
+      expect(new_transaction.date).to eq(time)
+    end
+
+    it 'initializes with zero values for credit and debit' do
+      expect(subject.credit).to eq(0)
+      expect(subject.debit).to eq(0)
+    end
+
+  end
+
   context '#deposit' do
   
     it 'records a deposit as a credit' do 
@@ -21,24 +42,5 @@ describe Transaction do
     end
 
   end
-
-  context 'initialization values' do
-
-    it 'receives a value which sets transaction balance' do
-      new_transaction = Transaction.new(100.00)
-      expect(new_transaction.balance).to eq(100.00)
-    end
-
-    it 'initializes with the current date' do
-      time = Time.now
-      allow(Time).to receive(:now).and_return(time)
-      new_transaction = Transaction.new(5.00)
-      expect(new_transaction.date).to eq(time)
-    end
-
-  end
-
-  # edge cases: test for error if deposit/withdraw called when either withdraw/deposit already set
-  # i.e. can only hold one immutable attribute per transaction
 
 end
