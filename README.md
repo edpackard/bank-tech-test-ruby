@@ -64,3 +64,5 @@ I want to print a statement of my transactions
 - set up local and github repo
 - turned requirements into user stories
 - modelled a basic class diagram
+- set up project with rspec, rubocop, simplecov
+- wrote very basic test for Account class - decided more logical to start with Transaction class
