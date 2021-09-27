@@ -2,6 +2,9 @@ require 'transaction'
 
 describe Transaction do
 
+  subject { Transaction.new(5.00) }
+
+
   context '#deposit' do
   
     it 'records a deposit as a credit' do 
@@ -21,11 +24,16 @@ describe Transaction do
   end
 
   context 'initialization values' do
+
+    it 'receives a value which sets transaction balance' do
+      new_transaction = Transaction.new(100.00)
+      expect(new_transaction.balance).to eq(100.00)
+    end
   
     it 'initializes with the current date' do
       time = Time.now
       allow(Time).to receive(:now).and_return(time)
-      new_transaction = Transaction.new
+      new_transaction = Transaction.new(5.00)
       expect(new_transaction.date).to eq(time)
     end
 
