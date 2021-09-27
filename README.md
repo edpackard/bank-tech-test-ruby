@@ -1,5 +1,12 @@
 # Bank tech test
 
+Technologies used:
+
+- Ruby 2.7.3
+- Rubocop (linting)
+- RSpec (testing)
+- SimpleCov (coverage)
+
 ## Specification
 
 ### Requirements
