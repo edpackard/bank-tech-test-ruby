@@ -39,4 +39,7 @@ describe Transaction do
 
   end
 
+  # edge cases: test for error if deposit/withdraw called when either withdraw/deposit already set
+  # i.e. can only hold one immutable attribute per transaction
+
 end
