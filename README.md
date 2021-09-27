@@ -68,3 +68,4 @@ I want to print a statement of my transactions
 - wrote very basic test for Account class - decided more logical to start with Transaction class
 - basic withdrawal/deposit tests written and passed
 - enjoyed 'transaction initialised with current date' test, as had to mock ('freeze') time
+- transaction class done in a fairly simple form: wondering whether to put in edge case testing (i.e. for non-floats) in this class or in Account class: Account class seems most logical place to do this, so Transaction class is then not bound to any restrictions and could hypothetically then be used by other non-float based classes
