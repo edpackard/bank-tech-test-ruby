@@ -48,7 +48,12 @@ So that I can see a record of my banking activity
 I want to print a statement of my transactions
 ```
 
+## Class diagram
+
+![Class diagram](plan.png)
+
 ## Progress
 
 - set up local and github repo
 - turned requirements into user stories
+- modelled a basic class diagram
