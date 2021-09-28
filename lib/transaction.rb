@@ -6,18 +6,20 @@ class Transaction
 
   def initialize(balance)
     @date = Time.now
-    @balance = balance
+    @balance = BigDecimal("#{balance}")
     @debit = BigDecimal("0")
     @credit = BigDecimal("0")
   end
 
   def deposit(amount)
-    p amount
     @credit = BigDecimal("#{amount}")
+    @balance += @credit
+    
   end 
 
   def withdraw(amount)
     @debit = BigDecimal("#{amount}")
+    @balance -= @debit
   end
 
 end
