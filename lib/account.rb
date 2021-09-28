@@ -18,7 +18,7 @@ class Account
   end
 
   def withdraw(amount)
-    new_transaction(-amount, true)
+    new_transaction(amount, true)
     "#{amount} withdrawn successfully"
   end
 
@@ -28,9 +28,9 @@ class Account
 
   private
 
-  def new_transaction(amount, withdrawal = false)
-    record = @transaction.new(current_balance + amount)
-    withdrawal ? record.withdraw(amount.abs) : record.deposit(amount)
+  def new_transaction(amount, withdraw = false)
+    record = @transaction.new(current_balance)
+    withdraw ? record.withdraw(amount) : record.deposit(amount)
     @transactions.push(record)
   end
 

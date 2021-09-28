@@ -1,6 +1,7 @@
 require 'account'
 
 describe Account do
+
   let(:statement_instance) { double :statement_instance }
   let(:transaction_class) { double :transaction_class }
   let(:transaction_instance) { double :transaction_instance }
@@ -12,7 +13,6 @@ describe Account do
   context "basic functionality" do
     
     before(:each) do
-       ## can change/add to this to specify transaction_class receiving curr balance +/- amount?
         allow(transaction_class).to receive(:new).and_return(transaction_instance)
     end
 
@@ -20,37 +20,38 @@ describe Account do
       expect(subject.current_balance).to eq(0)
     end
 
-    it "calls transaction deposit function" do
+    it "handles deposits" do
       expect(transaction_instance).to receive(:deposit).with(100.00)
       subject.deposit(100.00)  
     end
 
-    it "calls transaction withdraw function" do
+    it "handles withdrawals" do
       expect(transaction_instance).to receive(:withdraw).with(100.00)
       subject.withdraw(100.00)
+    end
+
+    it 'sends current balance to transaction instance' do
+      allow(transaction_instance).to receive(:deposit).with(100.00)
+      expect(transaction_class).to receive(:new).with(0)
+      subject.deposit(100.00)
     end
 
   end
     
   context "balance calculation functionality" do 
 
-    it "adjusts balance with deposit" do
+    it "adjusts current balance after deposit" do
       allow(transaction_class).to receive(:new).and_return(transaction_instance_credit)
       allow(transaction_instance_credit).to receive(:deposit).with(10.00)
       expect { subject.deposit(10.00) }.to change { subject.current_balance }.by(10.00)
     end
 
-    it "adjusts balance with withdrawal" do
+    it "adjusts balance after withdrawal" do
       allow(transaction_class).to receive(:new).and_return(transaction_instance_debit)
       allow(transaction_instance_debit).to receive(:withdraw).with(10.00)
       expect { subject.withdraw(10.00) }.to change { subject.current_balance }.by(-10.00)
     end
-
-    it "calculates accurately using BigDecimal" do
-      allow(transaction_class).to receive(:new).and_return(transaction_instance_debit)
-      allow(transaction_instance_debit).to receive(:withdraw).with(10.00)
-    end
-
+    
   end
 
   context "#statement" do
