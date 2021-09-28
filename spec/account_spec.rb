@@ -2,6 +2,7 @@ require 'account'
 
 describe Account do
 
+  let(:printer_instance) { double :printer_instance }
   let(:transaction_class) { double :transaction_class }
   let(:transaction_instance) { double :transaction_instance }
   let(:transaction_instance_credit) { double :transaction_instance, credit: 10.00, debit: 0.0 }
@@ -28,7 +29,7 @@ describe Account do
       expect(transaction_instance).to receive(:withdraw).with(100.00)
       subject.withdraw(100.00)
     end
-  
+
   end
     
   context "balance calculation functionality" do 
@@ -47,5 +48,19 @@ describe Account do
       expect(subject.current_balance).to eq(-10.00)
     end
 
+  end
+
+  context "#statement" do
+
+    before(:each) do
+      allow(transaction_class).to receive(:new).and_return(transaction_instance)
+      allow(transaction_instance).to receive(:withdraw).with(20.00)
+      subject.withdraw(20.00)
+    end
+
+    it "calls printer statement function with transactions array" do
+      expect(printer_instance).to receive(:statement).with([transaction_instance])
+      subject.statement(printer_instance)
+    end
   end
 end

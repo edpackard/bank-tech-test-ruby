@@ -1,3 +1,4 @@
+require_relative 'printer'
 require_relative 'transaction'
 
 class Account
@@ -21,6 +22,10 @@ class Account
     record = new_transaction
     record.withdraw(amount)
     @transactions.push(record)
+  end
+
+  def statement(printer = Printer.new)
+    printer.statement(@transactions)
   end
 
   private
