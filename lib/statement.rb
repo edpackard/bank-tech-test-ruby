@@ -1,9 +1,9 @@
-class Printer
+class Statement
 
   HEADING = "date || credit || debit || balance\n"
   DIVIDER = " ||"
 
-  def statement(transactions)
+  def printer(transactions)
     print HEADING
     transactions.reverse.each do |record|
       print record_string(record)

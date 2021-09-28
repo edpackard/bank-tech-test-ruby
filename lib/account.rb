@@ -1,4 +1,4 @@
-require_relative 'printer'
+require_relative 'statement'
 require_relative 'transaction'
 
 class Account
@@ -22,8 +22,8 @@ class Account
     "#{amount} withdrawn successfully"
   end
 
-  def statement(printer = Printer.new)
-    printer.statement(@transactions); nil
+  def statement(statement = Statement.new)
+    statement.printer(@transactions); nil
   end
 
   private

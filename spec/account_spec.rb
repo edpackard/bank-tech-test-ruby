@@ -1,7 +1,7 @@
 require 'account'
 
 describe Account do
-  let(:printer_instance) { double :printer_instance }
+  let(:statement_instance) { double :statement_instance }
   let(:transaction_class) { double :transaction_class }
   let(:transaction_instance) { double :transaction_instance }
   let(:transaction_instance_credit) { double :transaction_instance, credit: 10.00, debit: 0.0 }
@@ -62,8 +62,8 @@ describe Account do
     end
 
     it "calls printer statement function with transactions array" do
-      expect(printer_instance).to receive(:statement).with([transaction_instance])
-      subject.statement(printer_instance)
+      expect(statement_instance).to receive(:printer).with([transaction_instance])
+      subject.statement(statement_instance)
     end
   end
 end
