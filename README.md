@@ -61,6 +61,7 @@ I want to print a statement of my transactions
 
 ## Progress
 
+- Day 1
 - set up local and github repo
 - turned requirements into user stories
 - modelled a basic class diagram
@@ -70,3 +71,13 @@ I want to print a statement of my transactions
 - enjoyed 'transaction initialised with current date' test, as had to mock ('freeze') time
 - transaction class done in a fairly simple form: wondering whether to put in edge case testing (i.e. for non-floats) in this class or in Account class: Account class seems most logical place to do this, so Transaction class is then not bound to any restrictions and could hypothetically then be used by other non-float based classes
 - end of day 1: have made progress with account class and have tested it with considerable mocking/doubling of transaction class. Code requires refactoring.
+- Day 2
+- refactored account class
+- worked on printer class: wrote tests, wrote big clunky working method, and then refactored
+- fixed bug in Account class (exposed by feature test): was sending current balance to transaction before adding/subtracting the current transaction
+- (temporarily?) added nil returns on deposit, withdraw, and statement methods in Account to prevent transaction array being logged in the terminal
+
+Thoughts
+
+- time freezing in tests could be done better - explore Timecop?
+- floats are not the way to work with money in ruby: explore BigDecimal or money gem?
