@@ -13,24 +13,22 @@ class Account
   end
 
   def deposit(amount)
-    record = new_transaction(amount)
-    record.deposit(amount)
-    @transactions.push(record)
+    new_transaction(amount); nil
   end
 
   def withdraw(amount)
-    record = new_transaction(-amount)
-    record.withdraw(amount)
-    @transactions.push(record)
+    new_transaction(-amount, true); nil
   end
 
   def statement(printer = Printer.new)
-    printer.statement(@transactions)
+    printer.statement(@transactions); nil
   end
 
   private
 
-  def new_transaction(amount)
-    @transaction.new(current_balance+amount)
+  def new_transaction(amount, withdrawal = false)
+    record = @transaction.new(current_balance + amount)
+    withdrawal ? record.withdraw(amount.abs) : record.deposit(amount)
+    @transactions.push(record)
   end
 end
