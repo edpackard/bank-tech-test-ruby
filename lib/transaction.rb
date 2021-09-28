@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class Transaction
 
   attr_reader :credit, :debit, :date, :balance
@@ -5,16 +7,17 @@ class Transaction
   def initialize(balance)
     @date = Time.now
     @balance = balance
-    @debit = 0
-    @credit = 0
+    @debit = BigDecimal("0")
+    @credit = BigDecimal("0")
   end
 
   def deposit(amount)
-    @credit = amount
+    p amount
+    @credit = BigDecimal("#{amount}")
   end 
 
   def withdraw(amount)
-    @debit = amount
+    @debit = BigDecimal("#{amount}")
   end
 
 end

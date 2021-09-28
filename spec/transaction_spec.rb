@@ -23,6 +23,11 @@ describe Transaction do
       expect(subject.debit).to eq(0)
     end
 
+    it 'initializes with BigDecimal values for accuracy' do
+      expect(subject.credit).to be_a BigDecimal
+      expect(subject.debit).to be_a BigDecimal
+    end
+
   end
 
   context '#deposit' do
@@ -32,6 +37,11 @@ describe Transaction do
       expect(subject.credit).to eq(10.00)
     end
 
+    it 'records credit as a BigDecimal' do
+      subject.deposit(10.00)
+      expect(subject.credit).to be_a BigDecimal
+    end
+
   end
   
   context '#withdrawal' do
@@ -39,6 +49,11 @@ describe Transaction do
     it 'records a withdrawal as a debit' do
       subject.withdraw(10.00)
       expect(subject.debit).to eq(10.00)
+    end
+
+    it 'records a withdrawal as a BigDecimal' do
+      subject.withdraw(10.00)
+      expect(subject.debit).to be_a BigDecimal
     end
 
   end

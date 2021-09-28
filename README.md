@@ -2,7 +2,7 @@
 
 Technologies used:
 
-- Ruby 2.7.3
+- Ruby 2.7.3 (including BigDecimal library)
 - Rubocop (linting)
 - RSpec (testing)
 - SimpleCov (coverage)
@@ -76,8 +76,10 @@ I want to print a statement of my transactions
 - worked on printer class: wrote tests, wrote big clunky working method, and then refactored
 - fixed bug in Account class (exposed by feature test): was sending current balance to transaction before adding/subtracting the current transaction
 - (temporarily?) added nil returns on deposit, withdraw, and statement methods in Account to prevent transaction array being logged in the terminal
+- have provided messages for withdraw and deposite methods instead of nil return
+- have learned about and gone with BigDecimal to handle floating point calculations owing to Ruby float inaccuracies (try 1.40 + 1.60 in irb!): have decided to put this in Transaction class despite earlier thoughts as it seems more straightforward to 'read' the code if BigDecimal used here. May involve extracting some balance logic from Account though.
 
 Thoughts
 
 - time freezing in tests could be done better - explore Timecop?
-- floats are not the way to work with money in ruby: explore BigDecimal or money gem?
+- need to handle non-numeric and invalid numeric (negative, values with more than 2 decimal places) entries
