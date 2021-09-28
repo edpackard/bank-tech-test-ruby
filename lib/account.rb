@@ -8,19 +8,24 @@ class Account
   end
 
   def current_balance()
-    @transactions.map { |transaction| transaction.credit - transaction.debit }.sum
+    @transactions.map { |record| record.credit - record.debit }.sum
   end
 
   def deposit(amount)
-    new_transaction = @transaction.new(current_balance)
-    new_transaction.deposit(amount)
-    @transactions.push(new_transaction)
+    record = new_transaction
+    record.deposit(amount)
+    @transactions.push(record)
   end
 
   def withdraw(amount)
-    new_transaction = @transaction.new(current_balance)
-    new_transaction.withdraw(amount)
-    @transactions.push(new_transaction)
+    record = new_transaction
+    record.withdraw(amount)
+    @transactions.push(record)
   end
 
+  private
+
+  def new_transaction
+    @transaction.new(current_balance)
+  end
 end
