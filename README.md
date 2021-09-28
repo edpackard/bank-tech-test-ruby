@@ -59,7 +59,7 @@ I want to print a statement of my transactions
 
 ![Class diagram](plan.png)
 
-## Progress
+## Progress log
 
 - Day 1
 - set up local and github repo
@@ -77,7 +77,10 @@ I want to print a statement of my transactions
 - fixed bug in Account class (exposed by feature test): was sending current balance to transaction before adding/subtracting the current transaction
 - (temporarily?) added nil returns on deposit, withdraw, and statement methods in Account to prevent transaction array being logged in the terminal
 - have provided messages for withdraw and deposite methods instead of nil return
-- have learned about and gone with BigDecimal to handle floating point calculations owing to Ruby float inaccuracies (try 1.40 + 1.60 in irb!): have decided to put this in Transaction class despite earlier thoughts as it seems more straightforward to 'read' the code if BigDecimal used here. May involve extracting some balance logic from Account though.
+- have learned about and implemented BigDecimal to handle floating point calculations owing to Ruby float inaccuracies (try `1.40 + 1.60` in irb!): I have decided to use BigDecimal in Transaction class despite earlier thoughts as it seems more straightforward to 'read' the code if BigDecimal used here. May involve extracting some balance logic from Account though.
+- have made tests for account more robust - now checks that current balance is sent to a new Transaction instance
+- Transaction now calculates balance based on the current_balance sent from Account plus or minus the deposit/withdraw value: this makes it easier to follow the logic
+- the only calculation now performed in the Account class is the sum of the transactions array: which is populated with BigDecimal values
 
 Thoughts
 
