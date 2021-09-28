@@ -13,11 +13,11 @@ class Account
   end
 
   def deposit(amount)
-    new_transaction(amount); nil
+    new_transaction(amount); "#{amount} deposited successfully"
   end
 
   def withdraw(amount)
-    new_transaction(-amount, true); nil
+    new_transaction(-amount, true); "#{amount} withdrawn successfully"
   end
 
   def statement(printer = Printer.new)
