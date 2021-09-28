@@ -13,13 +13,13 @@ class Account
   end
 
   def deposit(amount)
-    record = new_transaction
+    record = new_transaction(amount)
     record.deposit(amount)
     @transactions.push(record)
   end
 
   def withdraw(amount)
-    record = new_transaction
+    record = new_transaction(-amount)
     record.withdraw(amount)
     @transactions.push(record)
   end
@@ -30,7 +30,7 @@ class Account
 
   private
 
-  def new_transaction
-    @transaction.new(current_balance)
+  def new_transaction(amount)
+    @transaction.new(current_balance+amount)
   end
 end

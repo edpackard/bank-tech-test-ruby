@@ -34,18 +34,16 @@ describe Account do
     
   context "balance calculation functionality" do 
 
-    it "calculates balance after deposit" do
+    it "adjusts balance with deposit" do
       allow(transaction_class).to receive(:new).and_return(transaction_instance_credit)
       allow(transaction_instance_credit).to receive(:deposit).with(10.00)
-      subject.deposit(10.00)
-      expect(subject.current_balance).to eq(10.00)
+      expect { subject.deposit(10.00) }.to change { subject.current_balance }.by(10.00)
     end
 
-    it "calculates balance after withdrawal" do
+    it "adjusts balance with withdrawal" do
       allow(transaction_class).to receive(:new).and_return(transaction_instance_debit)
       allow(transaction_instance_debit).to receive(:withdraw).with(10.00)
-      subject.withdraw(10.00)
-      expect(subject.current_balance).to eq(-10.00)
+      expect { subject.withdraw(10.00) }.to change { subject.current_balance }.by(-10.00)
     end
 
   end
