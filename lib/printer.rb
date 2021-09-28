@@ -1,15 +1,35 @@
 class Printer
 
+  HEADING = "date || credit || debit || balance\n"
+  DIVIDER = " ||"
+
   def statement(transactions)
-    string = ""
-    string += "date || credit || debit || balance\n" 
+    print HEADING
     transactions.reverse.each do |record|
-      string += "#{record.date.strftime("%d/%m/%Y")} ||"\
-        "#{sprintf(' %.2f', record.credit) if record.credit != 0} ||"\
-        "#{sprintf(' %.2f', record.debit) if record.debit != 0} ||"\
-        "#{sprintf(' %.2f', record.balance)}\n"
+      print record_string(record)
     end
-    print string
+  end
+
+  private
+
+  def record_string(record)
+    "#{date_string(record.date)}"\
+    "#{transaction_string(record.credit)}"\
+    "#{transaction_string(record.debit)}"\
+    "#{number_string(record.balance, true)}"
+  end
+  
+  def date_string(date)
+    "#{date.strftime("%d/%m/%Y") + DIVIDER}"
+  end
+
+  def transaction_string(transaction)
+    "#{transaction.zero? ? DIVIDER : number_string(transaction)}"\
+  end
+
+  def number_string(number, is_balance = false)
+    string = "#{sprintf(' %.2f', number)}" 
+    is_balance ? "#{string}\n" : "#{string + DIVIDER}"
   end
 
 end

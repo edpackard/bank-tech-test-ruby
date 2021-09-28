@@ -9,16 +9,16 @@ describe Printer do
 
   it "prints the header" do
     transactions = ([])
-    expect { subject.statement(transactions) }.to output("date || credit || debit || balance\n").to_stdout
+    expect { subject.statement(transactions) }.to output(Printer::HEADING).to_stdout
   end
 
   it "prints a statement" do
-    expected_output = "date || credit || debit || balance\n"\
+    expected_output =
       "28/09/2021 || 10.00 || || 20.00\n"\
       "27/09/2021 || 20.00 || || 10.00\n"\
       "01/09/2021 || || 10.00 || -10.00\n"
     transactions = [transaction_1, transaction_2, transaction_3]
-    expect { subject.statement(transactions) }.to output(expected_output).to_stdout
+    expect { subject.statement(transactions) }.to output(Printer::HEADING + expected_output).to_stdout
   end
 
 end
