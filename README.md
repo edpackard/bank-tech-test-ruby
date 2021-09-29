@@ -72,6 +72,7 @@ rspec ./spec/account_spec.rb
 - Rubocop (linting)
 - RSpec (testing)
 - SimpleCov (coverage) - 100% coverage
+- Timecop (freezing time for tests)
 
 ## Specification
 
