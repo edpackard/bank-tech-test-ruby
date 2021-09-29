@@ -5,7 +5,8 @@ class Account
 
   ERROR = 'Please enter a valid amount'
 
-  def initialize(transaction = Transaction)
+  def initialize(transaction = Transaction, statement = Statement.new)
+    @statement = statement
     @transaction = transaction
     @transactions = []
   end
@@ -24,8 +25,8 @@ class Account
     "#{amount} withdrawn successfully"
   end
 
-  def statement(statement = Statement.new)
-    statement.printer(@transactions); nil
+  def statement
+    @statement.printer(@transactions); nil
   end
 
   private

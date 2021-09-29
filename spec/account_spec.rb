@@ -8,7 +8,7 @@ describe Account do
   let(:transaction_instance_credit) { double :transaction_instance, credit: 10.00, debit: 0.0 }
   let(:transaction_instance_debit) { double :transaction_instance, credit: 0.0, debit: 10.00 }
  
-  subject { Account.new(transaction_class) }
+  subject { Account.new(transaction_class, statement_instance) }
 
   before(:each) do
     allow(transaction_class).to receive(:new).and_return(transaction_instance)
@@ -105,7 +105,7 @@ describe Account do
       allow(transaction_instance).to receive(:withdraw).with(20.00)
       subject.withdraw(20.00)
       expect(statement_instance).to receive(:printer).with([transaction_instance])
-      subject.statement(statement_instance)
+      subject.statement
     end
   end
 end

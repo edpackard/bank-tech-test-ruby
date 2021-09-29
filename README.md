@@ -83,8 +83,9 @@ I want to print a statement of my transactions
 - the only calculation now performed in the Account class is the sum of the transactions array: which is populated with BigDecimal values
 - Day 3
 - aiming to get this finished today: need to implement non-valid input handling; better time freezing; and general refactoring.
+- did some refactoring based on Rubocop's suggestions
+- edge cases handled: account class checks if input Numeric, if it is above 0 (using `positive?`, and if it is a valid currency decimal - i.e. no more than two decimal points)
 
 Thoughts
 
 - time freezing in tests could be done better - explore Timecop?
-- need to handle non-numeric and invalid numeric (negative, values with more than 2 decimal places) entries
