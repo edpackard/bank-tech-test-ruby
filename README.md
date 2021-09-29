@@ -81,6 +81,8 @@ I want to print a statement of my transactions
 - have made tests for account more robust - now checks that current balance is sent to a new Transaction instance
 - Transaction now calculates balance based on the current_balance sent from Account plus or minus the deposit/withdraw value: this makes it easier to follow the logic
 - the only calculation now performed in the Account class is the sum of the transactions array: which is populated with BigDecimal values
+- Day 3
+- aiming to get this finished today: need to implement non-valid input handling; better time freezing; and general refactoring.
 
 Thoughts
 
