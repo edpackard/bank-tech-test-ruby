@@ -6,9 +6,8 @@ describe Statement do
   let(:transaction_2) { double :transaction_instance, credit: 20.00, debit: 0.0, date: Time.new(2021, 9, 27), balance: 10.00 }
   let(:transaction_3) { double :transaction_instance, credit: 10.00, debit: 0.0, date: Time.new(2021, 9, 28), balance: 20.00 }
 
-
   it "prints the header" do
-    transactions = ([])
+    transactions = []
     expect { subject.printer(transactions) }.to output(Statement::HEADING).to_stdout
   end
 

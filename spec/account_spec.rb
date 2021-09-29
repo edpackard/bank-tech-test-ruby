@@ -13,7 +13,7 @@ describe Account do
   context "basic functionality" do
     
     before(:each) do
-        allow(transaction_class).to receive(:new).and_return(transaction_instance)
+      allow(transaction_class).to receive(:new).and_return(transaction_instance)
     end
 
     it "starts with a balance of zero" do
@@ -51,7 +51,7 @@ describe Account do
       allow(transaction_instance_debit).to receive(:withdraw).with(10.00)
       expect { subject.withdraw(10.00) }.to change { subject.current_balance }.by(-10.00)
     end
-    
+
   end
 
   context "#statement" do

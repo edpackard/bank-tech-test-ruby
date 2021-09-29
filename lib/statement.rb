@@ -28,7 +28,7 @@ class Statement
   end
 
   def number_string(number, is_balance = false)
-    string = "#{sprintf(' %.2f', number)}" 
+    string = "#{sprintf(' %<number>.2f', number: number)}" 
     is_balance ? "#{string}\n" : "#{string + DIVIDER}"
   end
 

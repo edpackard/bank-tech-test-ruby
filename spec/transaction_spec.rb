@@ -48,7 +48,7 @@ describe Transaction do
     end
 
     it 'updates the balance' do
-      expect { subject.deposit(10.00) }.to change { subject.balance }.by( 10.00 )
+      expect { subject.deposit(10.00) }.to change { subject.balance }.by(10.00)
       expect(subject.balance).to be_a BigDecimal
     end
 
@@ -67,7 +67,7 @@ describe Transaction do
     end
 
     it 'updates the balance' do
-      expect { subject.withdraw(10.00) }.to change { subject.balance }.by( -10.00 )
+      expect { subject.withdraw(10.00) }.to change { subject.balance }.by(-10.00)
       expect(subject.balance).to be_a BigDecimal
     end
 

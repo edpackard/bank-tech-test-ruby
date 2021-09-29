@@ -8,7 +8,7 @@ class Account
     @transactions = []
   end
 
-  def current_balance()
+  def current_balance
     @transactions.map { |record| record.credit - record.debit }.sum
   end
 
