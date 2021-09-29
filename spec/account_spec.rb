@@ -30,6 +30,27 @@ describe Account do
       subject.withdraw(100.00)
     end
 
+    it "will not accept negative numeric input for withdraw" do
+      expect { subject.withdraw(-10.00) }.to raise_error("Please enter a valid amount")
+    end
+
+    it "will not accept negative numeric input for deposit" do
+      expect { subject.deposit(0) }.to raise_error("Please enter a valid amount")
+    end
+
+    it "will not accept zero input for withdraw" do
+      expect { subject.withdraw(0) }.to raise_error("Please enter a valid amount")
+
+    end
+
+    it "will not accept zero input for deposit" do
+      expect { subject.deposit(-10.00) }.to raise_error("Please enter a valid amount")
+    end
+
+    # test for non-numerics
+
+    # test for non-currency decimals
+
     it 'sends current balance to transaction instance' do
       allow(transaction_instance).to receive(:deposit).with(100.00)
       expect(transaction_class).to receive(:new).with(0)
