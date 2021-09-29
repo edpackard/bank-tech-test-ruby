@@ -14,7 +14,7 @@ describe 'feature test' do
     expect(account.current_balance).to eq(7.50)
   end
 
-  it 'makes transactions and prints a statement' do
+  it 'makes several transactions and prints a statement' do
     expected_output =
     "date || credit || debit || balance\n"\
     "14/02/2022 || 500.00 || || 524.50\n"\
@@ -37,5 +37,4 @@ describe 'feature test' do
     expect { account.statement }.to output(expected_output).to_stdout
     Timecop.return
   end
-
 end

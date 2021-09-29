@@ -11,7 +11,7 @@ describe Statement do
     expect { subject.printer(transactions) }.to output(Statement::HEADING).to_stdout
   end
 
-  it "prints a statement" do
+  it "prints a statement in correct format" do
     output_string = "28/09/2021 || 10.00 || || 20.00\n"\
       "27/09/2021 || 20.00 || || 10.00\n"\
       "01/09/2021 || || 10.00 || -10.00\n"
@@ -19,5 +19,4 @@ describe Statement do
     transactions = [record_1, record_2, record_3]
     expect { subject.printer(transactions) }.to output(expected_output).to_stdout
   end
-
 end

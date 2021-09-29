@@ -35,7 +35,6 @@ describe Account do
       expect(transaction_class).to receive(:new).with(0)
       subject.deposit(100.00)
     end
-  
   end
 
   context "error handling and edge cases" do
@@ -80,7 +79,6 @@ describe Account do
     it "rejects non-currency decimals" do
       expect { subject.withdraw(65.4321) }.to raise_error(Account::ERROR)
     end
-
   end
     
   context "balance calculation functionality" do 
@@ -96,7 +94,6 @@ describe Account do
       allow(transaction_instance_debit).to receive(:withdraw).with(10.00)
       expect { subject.withdraw(10.00) }.to change { subject.current_balance }.by(-10.00)
     end
-
   end
 
   context "#statement" do

@@ -14,7 +14,6 @@ class Transaction
   def deposit(amount)
     @credit = BigDecimal("#{amount}")
     @balance += @credit
-    
   end 
 
   def withdraw(amount)

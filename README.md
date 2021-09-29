@@ -5,7 +5,7 @@ Technologies used:
 - Ruby 2.7.3 (including BigDecimal library)
 - Rubocop (linting)
 - RSpec (testing)
-- SimpleCov (coverage)
+- SimpleCov (coverage) - 100% coverage
 
 ## Specification
 
@@ -85,7 +85,4 @@ I want to print a statement of my transactions
 - aiming to get this finished today: need to implement non-valid input handling; better time freezing; and general refactoring.
 - did some refactoring based on Rubocop's suggestions
 - edge cases handled: account class checks if input Numeric, if it is above 0 (using `positive?`, and if it is a valid currency decimal - i.e. no more than two decimal points)
-
-Thoughts
-
-- time freezing in tests could be done better - explore Timecop?
+- have added timecop gem to gemfile and added time freezing to feature test and transaction test - really like timecop - very straightforward

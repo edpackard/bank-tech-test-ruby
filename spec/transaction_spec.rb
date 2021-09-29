@@ -7,7 +7,7 @@ describe Transaction do
 
   context 'initialization values' do
 
-    it 'receives an argument which sets transaction balance' do
+    it 'sets transaction balance with received argument' do
       new_transaction = Transaction.new(100.00)
       expect(new_transaction.balance).to eq(100.00)
     end
@@ -34,12 +34,11 @@ describe Transaction do
       expect(subject.credit).to be_a BigDecimal
       expect(subject.debit).to be_a BigDecimal
     end
-
   end
 
   context '#deposit' do
   
-    it 'records a deposit as a credit' do 
+    it 'records deposit as a credit' do 
       subject.deposit(10.00)
       expect(subject.credit).to eq(10.00)
     end
@@ -53,12 +52,11 @@ describe Transaction do
       expect { subject.deposit(10.00) }.to change { subject.balance }.by(10.00)
       expect(subject.balance).to be_a BigDecimal
     end
-
   end
   
   context '#withdrawal' do
   
-    it 'records a withdrawal as a debit' do
+    it 'records withdrawal as a debit' do
       subject.withdraw(10.00)
       expect(subject.debit).to eq(10.00)
     end
@@ -72,7 +70,5 @@ describe Transaction do
       expect { subject.withdraw(10.00) }.to change { subject.balance }.by(-10.00)
       expect(subject.balance).to be_a BigDecimal
     end
-
   end
-
 end
