@@ -3,6 +3,8 @@ require_relative 'transaction'
 
 class Account
 
+  ERROR = 'Please enter a valid amount'
+
   def initialize(transaction = Transaction)
     @transaction = transaction
     @transactions = []
@@ -36,11 +38,11 @@ class Account
   end
 
   def validity_check(amount)
-    raise 'Please enter a valid amount' unless is_valid?(amount)
+    raise ERROR unless valid?(amount)
   end
 
-  def is_valid?(amount)
-    amount.positive?
+  def valid?(amount)
+    (amount.is_a? Numeric) && amount.positive? && ((amount * 100) % 1).zero?
   end
 
 end

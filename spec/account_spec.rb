@@ -10,12 +10,12 @@ describe Account do
  
   subject { Account.new(transaction_class) }
 
+  before(:each) do
+    allow(transaction_class).to receive(:new).and_return(transaction_instance)
+  end
+
   context "basic functionality" do
     
-    before(:each) do
-      allow(transaction_class).to receive(:new).and_return(transaction_instance)
-    end
-
     it "starts with a balance of zero" do
       expect(subject.current_balance).to eq(0)
     end
@@ -30,31 +30,55 @@ describe Account do
       subject.withdraw(100.00)
     end
 
-    it "will not accept negative numeric input for withdraw" do
-      expect { subject.withdraw(-10.00) }.to raise_error("Please enter a valid amount")
-    end
-
-    it "will not accept negative numeric input for deposit" do
-      expect { subject.deposit(0) }.to raise_error("Please enter a valid amount")
-    end
-
-    it "will not accept zero input for withdraw" do
-      expect { subject.withdraw(0) }.to raise_error("Please enter a valid amount")
-
-    end
-
-    it "will not accept zero input for deposit" do
-      expect { subject.deposit(-10.00) }.to raise_error("Please enter a valid amount")
-    end
-
-    # test for non-numerics
-
-    # test for non-currency decimals
-
     it 'sends current balance to transaction instance' do
       allow(transaction_instance).to receive(:deposit).with(100.00)
       expect(transaction_class).to receive(:new).with(0)
       subject.deposit(100.00)
+    end
+  
+  end
+
+  context "error handling and edge cases" do
+  
+    it "rejects negative numeric input for withdraw" do
+      expect { subject.withdraw(-10.00) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects negative numeric input for deposit" do
+      expect { subject.deposit(0) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects zero input for withdraw" do
+      expect { subject.withdraw(0) }.to raise_error(Account::ERROR)
+
+    end
+
+    it "rejects zero input for deposit" do
+      expect { subject.deposit(-10.00) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects non-numeric inputs for withdraw" do
+      expect { subject.withdraw("10.00") }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects non-numeric inputs for deposit" do
+      expect { subject.deposit("10.00") }.to raise_error(Account::ERROR)
+    end
+   
+    it "rejects empty input for withdraw" do
+      expect { subject.withdraw(nil) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects empty input for deposit" do
+      expect { subject.deposit(nil) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects non-currency decimals" do
+      expect { subject.deposit(12.345) }.to raise_error(Account::ERROR)
+    end
+
+    it "rejects non-currency decimals" do
+      expect { subject.withdraw(65.4321) }.to raise_error(Account::ERROR)
     end
 
   end
@@ -77,13 +101,9 @@ describe Account do
 
   context "#statement" do
 
-    before(:each) do
-      allow(transaction_class).to receive(:new).and_return(transaction_instance)
+    it "calls printer statement function with transactions array" do
       allow(transaction_instance).to receive(:withdraw).with(20.00)
       subject.withdraw(20.00)
-    end
-
-    it "calls printer statement function with transactions array" do
       expect(statement_instance).to receive(:printer).with([transaction_instance])
       subject.statement(statement_instance)
     end
