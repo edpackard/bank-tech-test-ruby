@@ -35,6 +35,7 @@ describe 'feature test' do
     Timecop.freeze(time)
     account.deposit(500.00)
     expect { account.statement }.to output(expected_output).to_stdout
+    Timecop.return
   end
 
 end

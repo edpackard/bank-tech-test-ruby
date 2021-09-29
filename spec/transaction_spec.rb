@@ -1,3 +1,4 @@
+require 'timecop'
 require 'transaction'
 
 describe Transaction do
@@ -18,9 +19,10 @@ describe Transaction do
 
     it 'initializes with the current date' do
       time = Time.now
-      allow(Time).to receive(:now).and_return(time)
+      Timecop.freeze(time)
       new_transaction = Transaction.new(5.00)
       expect(new_transaction.date).to eq(time)
+      Timecop.return
     end
 
     it 'initializes with zero values for credit and debit' do
